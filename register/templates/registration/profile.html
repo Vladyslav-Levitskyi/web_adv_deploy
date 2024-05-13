@@ -1,0 +1,9 @@
+{% extends 'core_app/layout.html' %}
+
+{% block unregistered %}
+    <h1 class="main_article_title"> Welcome to {{ user.username }}'s profile! </h1>
+{% endblock %}
+
+{% block content %}
+    <h1 class="sign_in_congrats"> Congratulations! You're login successfully! </h1>
+{% endblock %}
