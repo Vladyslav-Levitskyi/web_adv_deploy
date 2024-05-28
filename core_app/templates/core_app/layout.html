@@ -5,7 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'core_app/css/main.css' %}">
-    <title>Document</title>
+
+    {% block title %}
+    <title>
+        {% if user.is_authenticated %}
+            {{ user.username }}'s profile
+        {% else %}
+            Sign-in
+        {% endif %}
+    </title>
+    {% endblock %}
+
 </head>
 <body>
     <header>
@@ -13,7 +23,7 @@
             {% if user.is_authenticated %}
                 <h1 class="main_article_title"> Do you need to scrape web-data or automate your web browsing?</h1>
             {% else %}
-                <h1 class="main_article_title"> Please log in to see content of the website </h1>
+                <h1 class="main_article_title"> Please log in to see content of the website. </h1>
             {% endif %}
         {% endblock %}
 
@@ -27,15 +37,7 @@
 
     </header>
 
-    {% block title %}
-        <title>
-            {% if user.is_authenticated %}
-                {{ user.username }}'s profile
-            {% else %}
-                Sign-in
-            {% endif %}
-        </title>
-    {% endblock %}
+
     <main>
         {% if user.is_authenticated %}
             {% block content %}   
