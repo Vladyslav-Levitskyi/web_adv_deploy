@@ -1,8 +1,18 @@
 {% extends 'core_app/layout.html' %}
 
+{% block unregistered %}
+    {% if user.is_authenticated %}
+        <h1 class="main_article_title"> These buttons are links to Github repositories. </h1>
+    {% else %}
+        <h1 class="main_article_title"> Please log in to see content of the website </h1>
+    {% endif %}
+{% endblock %}
+
 {% block content1 %}
     <div class="buttons-main-container">
-        <button class="buttons-main"><a href="https://github.com/Vladyslav-Levitskyi/"> main git account </a></button>  
+        <button class="buttons-main"><a href="https://github.com/Vladyslav-Levitskyi/web_adv_deploy"> Current web-app </a></button>
+        <button class="buttons-main"><a href="https://github.com/Vladyslav-Levitskyi/scraper_firefox"> Tor-Firefox scraper </a></button>
+        <button class="buttons-main"><a href="https://github.com/Vladyslav-Levitskyi/scraper_chrome"> Chrome scraper </a></button>
     </div>
 {% endblock %}
 {% block content %}

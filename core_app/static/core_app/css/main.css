@@ -20,7 +20,8 @@ h1.main_article_title {
     display: inline-block;
     text-align: right;
     line-height: 5em;
-    margin-right: 1em;
+    margin-right: 4em;
+    margin-top: 1em;
 }
 
 nav {
@@ -63,12 +64,12 @@ nav ul li {
 .buttons-header:active {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
     transition: box-shadow 0.6s ease;
-    background-color: rgb(70, 70, 70);
+    background-color: rgb(116, 116, 116);
 }
 
 .buttons-main {
     display: inline-block;
-    background-color: white;
+    background-color: rgb(179, 177, 177);
     color: black;
     width: 125px;
     height: auto;
