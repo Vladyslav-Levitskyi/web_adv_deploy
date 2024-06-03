@@ -26,7 +26,8 @@ h1.main_article_title {
 
 nav {
     float: left;
-    margin-left: -1em;
+    margin-left: -2em;
+    display: inline;
 }
 
 nav ul {
@@ -40,7 +41,7 @@ nav ul li {
     text-decoration: none;
     color: white;
     text-align: center;
-    line-height: 55px;
+    line-height: 3em;
 }
 
 .buttons-header {
@@ -123,6 +124,7 @@ h1.main_article_title {
     display: inline-block;
     text-align: left;
     line-height: 5em;
+    margin-right: 1.5em;
 
 }
 
@@ -138,6 +140,7 @@ div.reg_users_content h1 {
     text-align: left;
     margin-left: 1em;
     margin-top: 1.5em;
+    font-size: 2em;
 }
 
 div.reg_users_content1 {
@@ -151,6 +154,7 @@ div.reg_users_content1 h1 {
     color: white;
     text-align: right;
     margin-right: 1em;
+    font-size: 2em;
 }
 
 div.features {
