@@ -1,26 +1,26 @@
 from pathlib import Path
 import dj_database_url
 import os
-from dotenv import load_dotenv
 
-#       Example with "os" module without dotenv:
-#   EXAMPLE = os.environ.get("EXAMPLE")
-load_dotenv()
+#       Example for ensure safety with dotenv module:
+#   from dotenv import load_dotenv
+#
+#   load_dotenv()
+#   EXAMPLE = os.getenv("EXAMPLE")
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
-
+SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG") == "True"
+DEBUG = os.environ.get("DEBUG", "True") == "True"
+ALLOWED_HOSTS = ["web-adv-deploy.onrender.com", "127.0.0.1"]
 #   DEBUG = os.getenv("DEBUG", "False") == "True"
-
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(" ")
+#   ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(',')
 
 
 # Application definition
@@ -77,9 +77,12 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-database_url = os.getenv("DATABASE_URL")
-DATABASES["default"] = dj_database_url.parse(database_url)
+database_url = os.environ.get("DATABASE_URL")
 
+if database_url:
+    DATABASES['default'] = dj_database_url.parse(database_url)
+else:
+    raise ValueError("DATABASE_URL environment variable is not set")
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
