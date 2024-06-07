@@ -25,12 +25,31 @@ h1.main_article_title {
 }
 
 h1 {
-    font-size: 2.5em;
+    font-size: 2em;
 }
 
 @media(max-width: 600px){
+    body{
+        font-size: 0.8em;
+    }
+    header {
+        height: 10em;
+        line-height: 4.5em;
+    }
     h1{
-        font-size:1.5em;
+        font-size: 1.5em;
+        line-height: 3em;
+        margin-right: 2em;
+        margin-top: 0.5em;
+
+    }
+    nav ul {
+        margin-top: 2em;
+    }
+
+    .form-field input[type="text"],
+    .form-field input[type="password"] {
+        width: 20em;
     }
 }
 
