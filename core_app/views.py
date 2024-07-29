@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import PersonForm
-
+from dotenv import load_dotenv
+from django.http import JsonResponse
+from weather.openweathermap import get_weather
+from django.views.decorators.csrf import ensure_csrf_cookie
+import os
 
 def home(request):
     return render(request, 'core_app/home.html')
@@ -26,5 +30,9 @@ def add_user(request):
         'form': form,
         'error': error
     }
-
     return render(request, 'registration/profile.html', form_methods)
+
+
+    
+    
+    

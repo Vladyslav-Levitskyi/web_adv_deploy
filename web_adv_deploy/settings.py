@@ -1,21 +1,22 @@
 from pathlib import Path
 import dj_database_url
 import os
+from dotenv import load_dotenv
 
 #       Example for ensure safety with dotenv module:
 #   from dotenv import load_dotenv
 #
 #   load_dotenv()
 #   EXAMPLE = os.getenv("EXAMPLE")
-
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
+OPENWEATHER_KEY = os.environ.get("OPENWEATHER_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "True") == "True"
 ALLOWED_HOSTS = ["web-adv-deploy.onrender.com", "127.0.0.1"]
@@ -35,6 +36,8 @@ INSTALLED_APPS = [
     'web_adv_deploy',
     'core_app',
     'register',
+    'weather',
+    'chat',
 ]
 
 MIDDLEWARE = [
@@ -45,7 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    #   'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'web_adv_deploy.urls'
@@ -61,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core_app.context_processors.weather_processor',
             ],
         },
     },
@@ -78,12 +82,12 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-database_url = os.environ.get("DATABASE_URL")
+#   database_url = os.environ.get("DATABASE_URL")
 
-if database_url:
-    DATABASES['default'] = dj_database_url.parse(database_url)
-else:
-    raise ValueError("DATABASE_URL environment variable is not set")
+#   if database_url:
+    #   DATABASES['default'] = dj_database_url.parse(database_url)
+#   else:
+#       raise ValueError("DATABASE_URL environment variable is not set")
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -126,9 +130,9 @@ STATICFILES_DIRS = [
     BASE_DIR/'register'
     ]
 
-if not DEBUG:
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+#   if not DEBUG:
+    #   STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    #   MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
