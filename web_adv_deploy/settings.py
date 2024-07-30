@@ -82,12 +82,12 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-#   database_url = os.environ.get("DATABASE_URL")
+database_url = os.environ.get("DATABASE_URL")
 
-#   if database_url:
-    #   DATABASES['default'] = dj_database_url.parse(database_url)
-#   else:
-#       raise ValueError("DATABASE_URL environment variable is not set")
+if database_url:
+    DATABASES['default'] = dj_database_url.parse(database_url)
+else:
+    raise ValueError("DATABASE_URL environment variable is not set")
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -130,9 +130,9 @@ STATICFILES_DIRS = [
     BASE_DIR/'register'
     ]
 
-#   if not DEBUG:
-    #   STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    #   MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+if not DEBUG:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
