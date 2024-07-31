@@ -347,6 +347,9 @@ footer {
         text-align: center;
         line-height: 1em;
     }
+    p #text {
+        font-size: 1.8em;
+    }
     main {
         min-height: 50em;
     }
@@ -379,7 +382,6 @@ footer {
         position: relative;
         bottom: 0;
     }
-
     .form-field input[type="text"],
     .form-field input[type="password"] {
         width: 20em;
@@ -426,7 +428,7 @@ footer {
     h1.main_article_title {
         display: block;
         line-height: 1em;
-        margin: 2em 0 2.5em 0;
+        margin: 2em 0 1.3em 0;
         text-align: center;
     }
     .sign_in_congrats {
