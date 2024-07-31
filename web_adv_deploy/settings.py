@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 OPENWEATHER_KEY = os.environ.get("OPENWEATHER_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "True") == "True"
+DEBUG = os.environ.get("DEBUG", "True") == "False"
 ALLOWED_HOSTS = ["web-adv-deploy.onrender.com", "127.0.0.1"]
 #   DEBUG = os.getenv("DEBUG", "False") == "True"
 #   ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(',')
