@@ -1,0 +1,9 @@
+{% extends 'core_app/layout.html' %}
+
+{% block unregistered %}
+    <h1 class="main_article_title"> Congratulations you're login successfully! Welcome to {{ user.username }}'s profile. </h1>
+{% endblock %}
+
+{% block content %}
+    <h2 class="sign_in_congrats"> {{ user.username }}'s profile/ <a class="link" href="/"> To main page. </a> </h2>
+{% endblock %}
