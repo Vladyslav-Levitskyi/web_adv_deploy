@@ -334,7 +334,9 @@ footer {
         padding-top: 0.5em;
         display: block;
     }
-
+    .buttons-main {
+        min-height: 3em;
+    }
     body{
         font-size: 0.5em;
     }
@@ -442,7 +444,7 @@ footer {
     .less_weather_data {
         font-size: 1.5em;
         top: 1.6em;
-        left: 3em;
+        left: 4em;
     }
     .weather_image {
         width: 4.5em;
