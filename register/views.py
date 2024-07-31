@@ -8,7 +8,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return(redirect("accounts/profile/"))
+            return(redirect("profile"))
         else:
             print("error", form.errors)
     else:
