@@ -324,7 +324,6 @@ footer {
 }
 
 
-
 @media(max-width: 600px){
     .buttons-header {
         font-size: 1.5em;
@@ -420,7 +419,7 @@ footer {
     
     div.reg_users_content1 h1 {
         color: white;
-        text-align: right;
+        text-align: left;
         margin-right: 1em;
         margin-left: 1em;
         font-size: 2.5em;
@@ -445,7 +444,7 @@ footer {
     }
     .less_weather_data {
         font-size: 1.5em;
-        top: 1.6em;
+        top: 1.65em;
         left: 4em;
     }
     .weather_image {
