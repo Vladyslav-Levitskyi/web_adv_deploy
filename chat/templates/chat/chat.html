@@ -12,8 +12,8 @@
     <div class="chat_container">
         <div class="chat_box">
             {% for message in messages %}
-                <div class="chat-message {% if message.sender == 'You' %}You{% else %}Ai{% endif %}">
-                    <strong> {{ message.sender }}:</strong> {{ message.text|linebreaks }}
+                <div class="chat-message {% if message.role == 'user' %}You{% else %}Ai{% endif %}">
+                    <strong> {{ message.role|capfirst }}:</strong> {{ message.content|linebreaks }}
                 </div>
             {% endfor %}
         </div>
@@ -32,4 +32,3 @@
         </div>
     </div>
 {% endblock %}
-
