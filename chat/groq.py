@@ -42,4 +42,8 @@ def load_chat_history(username):
 def save_chat_history(username, messages):
     user = User.objects.get(username=username)
     for message in messages:
-        ChatMessage.objects.create(sender=user, role=message["role"], text=message["content"])
+        if not ChatMessage.objects.filter(sender=user, role=message["role"], text=message["content"]).exists():
+            ChatMessage.objects.create(sender=user, role=message["role"], text=message["content"])
+            logging.debug(f"Saved message: {message}")  # Логування збереження
+        else:
+            logging.debug(f"Message already exists, not saving: {message}")

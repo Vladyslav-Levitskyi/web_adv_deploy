@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import ChatMessage
-from .forms import ChatForm
 from .groq import get_groq_response, load_chat_history, save_chat_history
 
 @login_required
@@ -23,7 +22,7 @@ def chat_view(request):
             save_chat_history(request.user.username, new_messages)
 
             # Оновлена історія чату
-            updated_chat_history = user_chat_history + new_messages
+            updated_chat_history = user_chat_history #  + new_messages
 
             # Рендеринг шаблону з новими повідомленнями
             return render(request, "chat/chat.html", {
