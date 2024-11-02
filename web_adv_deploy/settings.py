@@ -128,16 +128,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# Налаштування статичних файлів для проекту Django
+STATIC_URL = '/static/'
 
+# Директорії, де Django буде шукати статичні файли
 STATICFILES_DIRS = [
-    BASE_DIR/'core_app/static',
-    BASE_DIR/'register'
-    ]
-STATIC_ROOT = BASE_DIR/ 'staticfiles'
-#   if not DEBUG:
+    BASE_DIR / 'core_app/static',  # Директорія для статичних файлів основного додатку
+    BASE_DIR / 'register',          # Директорія для статичних файлів реєстрації
+]
+
+# Директорія, куди будуть зберігатися зібрані статичні файли
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Використання WhiteNoise для обслуговування статичних файлів
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')  # Додавання WhiteNoise до середовища
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
