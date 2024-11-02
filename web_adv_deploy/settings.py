@@ -136,9 +136,10 @@ STATIC_URL = '/static/'
 
 # Директорії, де Django буде шукати статичні файли
 # STATICFILES_DIRS = [
-#     BASE_DIR / 'core_app/static',  # Директорія для статичних файлів основного додатку
-#     BASE_DIR / 'register',          # Директорія для статичних файлів реєстрації
-# ]
+#     BASE_DIR / 'core_app/static',  # Додайте цю директорію, якщо вона існує
+#     BASE_DIR / 'static',            # Переконайтеся, що ця директорія існує
+#    ]
+#STATICFILES_DIRS = [BASE_DIR / 'core_app/static']
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # Директорія, куди будуть зберігатися зібрані статичні файли
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
