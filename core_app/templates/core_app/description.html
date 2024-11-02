@@ -1,0 +1,24 @@
+{% extends 'core_app/layout.html' %}
+
+{% block unregistered %}
+    {% if user.is_authenticated %}
+        <h1 class="main_article_title"> Advantages of Django and short description of Tor through VPN etc.</h1>
+    {% else %}
+        <h1 class="main_article_title"> Please log in to interact with the website, see content and services. </h1>
+    {% endif %}
+{% endblock %}
+
+{% block content1 %}
+    <div class="features">
+        <h1> What are the advantages of Django? </h1>
+        <h3> Django saves time for developers and allows you to create new elements in Python, instead of messing with creating existing ones. That's why such giant companies as Instagram, Spotify, Dropbox, Pinterest or Reddit use Django for their sites and web applications. </h3>
+        <h1> Tor through VPN method. </h1>
+        <h3> Method Tor through VPN needs to connect to VPN before using Tor. It means that first your connection is established to VPN server and change your real IP address, after this you can connect your programm (for example web scrapers) to Tor. The Tor through VPN method is considered quite strong in terms of security and anonymity, as it combines the advantages of both technologies. Overall, the Tor through VPN method is a powerful tool for increasing your anonymity and security online, if configured correctly and used with a reliable VPN service.</h3>
+        <h1> Using Selenium with BeautifulSoup.</h1>
+        <h3> With Selenium and BeautifulSoup, you can effectively scrape and interact with web pages that would be difficult or impossible to handle with just one of these tools alone. Method page source returns HTML code of page after running all the scripts, it's especially useful for scraping sites with dynamic content that is loaded using JavaScript. Also we can get HTML skeleton that we can scrape it later with BeautifulSoup on local machine.</h3>
+        <h1> Llama3-70b-8192 description. </h1>
+        <h3> Llama 3-70B-8192 is one of the latest models from Meta, designed for high-performance natural language processing tasks. It is part of the Llama 3 series, which includes both base and instruct models. The "70B" signifies that this model has 70 billion parameters, making it one of the most powerful in the series.</h3>
+    </div>
+{% endblock %}
+{% block content %}
+{% endblock %}

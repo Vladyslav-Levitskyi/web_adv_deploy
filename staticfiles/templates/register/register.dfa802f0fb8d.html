@@ -1,0 +1,13 @@
+{% extends 'core_app/layout.html' %}
+
+{% block title %} Registration {% endblock %}
+
+{% block login %}
+    <form class="form-field" method="POST" action="{% url 'register' %}">
+        {% csrf_token %}
+        {{ form }}
+        <br>
+        <br>
+        <button class="buttons-main" type="submit"> Registration </button>
+    </form>
+{% endblock %}

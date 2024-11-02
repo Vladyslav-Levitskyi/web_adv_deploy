@@ -1,0 +1,30 @@
+{% extends 'core_app/layout.html' %}
+
+
+{% block unregistered %}
+    {% if user.is_authenticated %}
+        <h1 class="main_article_title"> Here you can request weather for all cities in the World. </h1>
+    {% else %}
+        <h1 class="main_article_title"> Please log in to interact with the website, see content and services. </h1>
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    {% if weather_data %}
+        <div class="weather_info">
+            <form method="post" action="{% url 'set_city' %}" class="weather_form">
+                {% csrf_token %}
+                <input type="text" id="city" name="city" required placeholder="☀️ Enter your city">
+                <button type="submit"> Submit </button>
+            </form>
+            <h2> Weather in {{ weather_data.name }}: </h2>
+            <p> Temperature: {{ weather_data.main.temp }}&deg;C </p>
+            <p> Humidity is: {{ weather_data.main.humidity }} % </p>
+            <p> Wind speed is {{ weather_data.wind.speed }}m/s </p>
+            <p> Sun rises at {{ weather_data.sys.sunrise_time }} local time. </p>
+            <p> Sun sets at {{ weather_data.sys.sunset_time }} local time. </p>
+            <p> General weather: {{ weather_data.weather.0.description }}. </p>
+        </div>
+    {% endif %}
+{% endblock %}

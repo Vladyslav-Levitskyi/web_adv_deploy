@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'core_app/css/main.css' %}">
+
+    {% block title %}
+    <title>
+        {% if user.is_authenticated %}
+            {{ user.username }}'s profile
+        {% else %}
+            Sign-in
+        {% endif %}
+    </title>
+    {% endblock %}
+
+</head>
+<body>
+    <header>
+        {% block unregistered %}
+            {% if user.is_authenticated %}
+                <h1 class="main_article_title"> Do you need to scrape web-data or automate your web browsing?</h1>
+            {% else %}
+                <h1 class="main_article_title"> Please log in to interact with the website, see content and services. </h1>
+            {% endif %}
+        {% endblock %}
+        
+        {% block weather %}
+            {% if not show_form and weather_data %}
+                <a href="{% url 'weather' %}">
+                    <img class="weather_image" src="http://openweathermap.org/img/wn/{{ weather_icon }}@2x.png">
+                    <span class="less_weather_data"> {{ city_name }}: {{ temperature }}&deg;C </span>
+                </a>
+            {% else %}
+                <div class ="main_weather_input">
+                    <form method="post" action="{% url 'set_city' %}" class="main_weather_form">
+                        {% csrf_token %}
+                        <input type="text" id="city" name="city" required placeholder="☀️ Enter your city">
+                        <button type="submit"> Submit </button>
+                    </form>
+                </div>       
+            {% endif %}
+        {% endblock %}
+
+        <nav>
+            <ul>
+                <li><a href ="{% url 'home' %}" class="buttons-header">Home</a></li>
+                <li><a href ="{% url 'description' %}" class="buttons-header">Descript</a></li>
+                <li><a href ="{% url 'git_projects' %}" class="buttons-header">Projects</a></li>
+                <li><a href ="{% url 'chat' %}" class="buttons-header">AI chat</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        {% if user.is_authenticated %}
+            {% block content %}   
+            {% endblock %}
+
+            {% block content1 %}     
+            {% endblock %}
+        {% else %}
+            {% block login %}
+                <div class="log_in_button">
+                    <h3> Please login or register <a class="link" href="/login"> here </a></h3>"
+                </div>
+            {% endblock %}        
+        {% endif %}
+
+    </main>
+    <footer>
+        <img src="{% static 'core_app/img/imagebottom.jpg' %}" class="footer-image">
+    </footer>
+</body>
+</html>
+

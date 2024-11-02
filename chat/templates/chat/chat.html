@@ -1,0 +1,34 @@
+{% extends 'core_app/layout.html' %}
+
+{% block unregistered %}
+    {% if user.is_authenticated %}
+        <h1 class="main_article_title"> This is an AI-powered assistant that glad if you ask some. </h1>
+    {% else %}
+        <h1 class="main_article_title"> Please log in to interact with the website, see content and services. </h1>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="chat_container">
+        <div class="chat_box">
+            {% for message in messages %}
+                <div class="chat-message {% if message.role == 'user' %}You{% else %}Ai{% endif %}">
+                    <strong> {{ message.role|capfirst }}:</strong> {{ message.content|linebreaks }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="chat_input">
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" name="text" class="text_request" required>
+                <button type="submit"> Send </button>    
+            </form>  
+        </div>
+        <div class="chat_clear">
+            <form method="post" action="{% url 'clear_chat' %}">
+                {% csrf_token %}
+                <button type="submit"> Clear chat history </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

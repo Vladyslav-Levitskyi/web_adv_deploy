@@ -1,0 +1,23 @@
+{% extends 'core_app/layout.html' %}
+
+{% block unregistered %}
+    {% if user.is_authenticated %}
+        <h1 class="main_article_title"> These buttons are links to Github repositories. </h1>
+    {% else %}
+        <h1 class="main_article_title"> Please log in to interact with the website, see content and services. </h1>
+    {% endif %}
+{% endblock %}
+
+{% block content1 %}
+    <div class="buttons-main-container">
+        <button class="buttons-main"><a href="https://github.com/Vladyslav-Levitskyi/web_adv_deploy"> Current web-app </a></button>
+        <button class="buttons-main"><a href="https://github.com/Vladyslav-Levitskyi/scraper_firefox"> Tor-Firefox scraper </a></button>
+        <button class="buttons-main"><a href="https://github.com/Vladyslav-Levitskyi/scraper_chrome"> Chrome scraper </a></button>
+    </div>
+    <div class="buttons-main-container">
+        <button class="buttons-main"><a href="https://github.com/Vladyslav-Levitskyi/Ai-powered-telegram-bot"> Telegram Ai bot </a></button>
+        <button class="buttons-main"><a href="https://github.com/Vladyslav-Levitskyi/SHA-256-encryptor">SHA-256 encryptor </a></button>
+    </div>
+{% endblock %}
+{% block content %}
+{% endblock %}
