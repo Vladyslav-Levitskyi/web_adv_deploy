@@ -140,7 +140,11 @@ STATIC_URL = '/static/'
 #     BASE_DIR / 'static',            # Переконайтеся, що ця директорія існує
 #    ]
 #STATICFILES_DIRS = [BASE_DIR / 'core_app/static']
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [
+    BASE_DIR / 'core_app/static',
+    Path('D:/Cursor projects/web_adv_deploy/core_app/static')
+    ]
+
 # Директорія, куди будуть зберігатися зібрані статичні файли
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
 
