@@ -141,8 +141,7 @@ STATIC_URL = '/static/'
 #    ]
 #STATICFILES_DIRS = [BASE_DIR / 'core_app/static']
 STATICFILES_DIRS = [
-    BASE_DIR / 'core_app/static',
-    Path('D:/Cursor projects/web_adv_deploy/core_app/static')
+    BASE_DIR / 'core_app/static'
     ]
 
 # Директорія, куди будуть зберігатися зібрані статичні файли
