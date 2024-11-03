@@ -24,21 +24,20 @@ OPENWEATHER_KEY = os.getenv("OPENWEATHER_KEY")
 logger.info(f"OPENWEATHER_KEY: {OPENWEATHER_KEY}")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG")
-logger.info(f"DEBUG: {DEBUG}")
+DEBUG = os.getenv("DEBUG_LOCAL")
 
 ALLOWED_HOSTS = [
     "127.0.0.1",  # Локальний хост
     "localhost",   # Локальний хост
 ]
 
-if DEBUG == True:
+if DEBUG == 'true':
     # Локальне середовище
     ALLOWED_HOSTS = [
         "127.0.0.1",  # Локальний хост
         "localhost",   # Локальний хост
     ]
-elif DEBUG == False:
+elif DEBUG == 'false':
     # Серверне середовище
     ALLOWED_HOSTS = [
         "web-adv-deploy.onrender.com",  # Домен на сервері
