@@ -129,10 +129,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Налаштування статичних файлів для проекту Django
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Директорії, де Django буде шукати статичні файли
 # STATICFILES_DIRS = [
