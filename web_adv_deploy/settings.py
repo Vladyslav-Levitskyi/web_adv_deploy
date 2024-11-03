@@ -148,11 +148,14 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-
 STATICFILES_DIRS = [
-    BASE_DIR / 'static/core_app/css',  
-    BASE_DIR / 'static/core_app/img',            
+    os.path.join(BASE_DIR, 'core_app/static'),  # Вказуємо на директорію, де знаходяться статичні файли
 ]
+
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'static/core_app/css',  
+#     BASE_DIR / 'static/core_app/img',            
+# ]
 
 
 # Директорія, куди будуть зберігатися зібрані статичні файли
