@@ -27,13 +27,18 @@ logger.info(f"OPENWEATHER_KEY: {OPENWEATHER_KEY}")
 DEBUG = os.getenv("DEBUG")
 logger.info(f"DEBUG: {DEBUG}")
 
-if DEBUG:
+ALLOWED_HOSTS = [
+    "127.0.0.1",  # Локальний хост
+    "localhost",   # Локальний хост
+]
+
+if DEBUG == True:
     # Локальне середовище
     ALLOWED_HOSTS = [
         "127.0.0.1",  # Локальний хост
         "localhost",   # Локальний хост
     ]
-else:
+elif DEBUG == False:
     # Серверне середовище
     ALLOWED_HOSTS = [
         "web-adv-deploy.onrender.com",  # Домен на сервері
@@ -66,7 +71,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'web_adv_deploy.urls'
@@ -161,6 +166,7 @@ STATICFILES_DIRS = [
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_STORAGE = 'whitenoise.storage.ManifestStaticFilesStorage'
+
 #   MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
 
