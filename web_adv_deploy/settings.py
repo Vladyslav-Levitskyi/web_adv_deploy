@@ -160,9 +160,9 @@ STATICFILES_DIRS = [
 # Директорія, куди будуть зберігатися зібрані статичні файли
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Використання WhiteNoise для обслуговування статичних файлів
 STATICFILES_STORAGE = 'whitenoise.storage.ManifestStaticFilesStorage'
-MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')  # Додавання WhiteNoise до середовища
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
