@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 OPENWEATHER_KEY = os.environ.get("OPENWEATHER_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "True") == "False"
+DEBUG = os.environ.get("DEBUG")
 #   ALLOWED_HOSTS = ["web_adv_deploy.onrender.com", "127.0.0.1"]
 #   DEBUG = os.getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = [
@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    #    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'web_adv_deploy.urls'
@@ -138,7 +138,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #     BASE_DIR / 'core_app/static',  # Додайте цю директорію, якщо вона існує
 #     BASE_DIR / 'static',            # Переконайтеся, що ця директорія існує
 #    ]
-#STATICFILES_DIRS = [BASE_DIR / 'core_app/static']
+
 STATICFILES_DIRS = [
     BASE_DIR / 'core_app/static'
     ]
@@ -148,7 +148,7 @@ STATICFILES_DIRS = [
 
 # Використання WhiteNoise для обслуговування статичних файлів
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')  # Додавання WhiteNoise до середовища
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')  # Додавання WhiteNoise до середовища
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
