@@ -2,12 +2,12 @@ from pathlib import Path
 import dj_database_url
 import os
 from dotenv import load_dotenv
+import logging
 
-#       Example for ensure safety with dotenv module:
-#   from dotenv import load_dotenv
-#
-#   load_dotenv()
-#   EXAMPLE = os.getenv("EXAMPLE")
+# Налаштування логування
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -15,17 +15,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
-OPENWEATHER_KEY = os.environ.get("OPENWEATHER_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
+logger.info(f"SECRET_KEY: {SECRET_KEY}")
+
+OPENWEATHER_KEY = os.getenv("OPENWEATHER_KEY")
+logger.info(f"OPENWEATHER_KEY: {OPENWEATHER_KEY}")
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG")
-#   ALLOWED_HOSTS = ["web_adv_deploy.onrender.com", "127.0.0.1"]
-#   DEBUG = os.getenv("DEBUG", "False") == "True"
-ALLOWED_HOSTS = [
-    "web-adv-deploy.onrender.com",
-    "127.0.0.1",
-    "localhost"
-]
+DEBUG = os.getenv("DEBUG")
+logger.info(f"DEBUG: {DEBUG}")
+
+# Отримуємо ALLOWED_HOSTS з середовища, зберігаючи безпечний формат
+ALLOWED_HOSTS = [host.strip() for host in os.getenv("ALLOWED_HOSTS", "").split(",") if host.strip()]
+logger.info(f"ALLOWED_HOSTS: {ALLOWED_HOSTS}")
+
 
 
 # Application definition
@@ -87,7 +90,7 @@ if os.getenv("DJANGO_ENV") == "development":
         }
     }
 else:
-    database_url = os.environ.get("DATABASE_URL")
+    database_url = os.getenv("DATABASE_URL")
     if database_url:
         DATABASES = {
             'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
@@ -130,24 +133,21 @@ USE_TZ = True
 
 
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Директорії, де Django буде шукати статичні файли
-# STATICFILES_DIRS = [
-#     BASE_DIR / 'core_app/static',  # Додайте цю директорію, якщо вона існує
-#     BASE_DIR / 'static',            # Переконайтеся, що ця директорія існує
-#    ]
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'core_app/static'
-    ]
+    BASE_DIR / 'static/core_app/css',  
+    BASE_DIR / 'static/core_app/img',            
+]
+
 
 # Директорія, куди будуть зберігатися зібрані статичні файли
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Використання WhiteNoise для обслуговування статичних файлів
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.ManifestStaticFilesStorage'
 MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')  # Додавання WhiteNoise до середовища
 
 # Default primary key field type
