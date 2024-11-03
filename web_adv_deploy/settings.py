@@ -4,6 +4,9 @@ import os
 from dotenv import load_dotenv
 import logging
 
+
+load_dotenv()
+
 # Налаштування логування
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -25,10 +28,19 @@ logger.info(f"OPENWEATHER_KEY: {OPENWEATHER_KEY}")
 DEBUG = os.getenv("DEBUG")
 logger.info(f"DEBUG: {DEBUG}")
 
-# Отримуємо ALLOWED_HOSTS з середовища, зберігаючи безпечний формат
-ALLOWED_HOSTS = [host.strip() for host in os.getenv("ALLOWED_HOSTS", "").split(",") if host.strip()]
-logger.info(f"ALLOWED_HOSTS: {ALLOWED_HOSTS}")
+if DEBUG:
+    # Локальне середовище
+    ALLOWED_HOSTS = [
+        "127.0.0.1",  # Локальний хост
+        "localhost",   # Локальний хост
+    ]
+else:
+    # Серверне середовище
+    ALLOWED_HOSTS = [
+        "web-adv-deploy.onrender.com",  # Домен на сервері
+    ]
 
+logger.info(f"ALLOWED_HOSTS: {ALLOWED_HOSTS}")
 
 
 # Application definition
