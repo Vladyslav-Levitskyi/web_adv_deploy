@@ -3,8 +3,15 @@ from django.contrib.auth.decorators import login_required
 from .models import ChatMessage
 from .groq import get_groq_response, load_chat_history, save_chat_history
 
-@login_required
 def chat_view(request):
+    # Якщо користувач не авторизований, відобразіть повідомлення
+    if not request.user.is_authenticated:
+        return render(request, "chat/chat.html", {
+            "messages": [],  # Можливо, ви хочете показати порожній чат
+            "info": "Please log in to access the full chat functionality."
+        })
+
+    # Якщо користувач авторизований, обробляйте чат як зазвичай
     if request.method == "POST":
         user_message = request.POST.get("text", "").strip()  # Отримання тексту з форми
         if user_message:
@@ -22,7 +29,7 @@ def chat_view(request):
             save_chat_history(request.user.username, new_messages)
 
             # Оновлена історія чату
-            updated_chat_history = user_chat_history #  + new_messages
+            updated_chat_history = user_chat_history  # + new_messages
 
             # Рендеринг шаблону з новими повідомленнями
             return render(request, "chat/chat.html", {
@@ -46,3 +53,4 @@ def clear_chat(request):
         ChatMessage.objects.filter(sender=request.user).delete()
         return redirect('chat')
     return render(request, 'chat/chat.html')
+
