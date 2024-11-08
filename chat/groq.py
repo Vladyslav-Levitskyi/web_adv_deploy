@@ -16,9 +16,12 @@ def get_groq_response(content, chat_history):
     chat_history.append({"role": "user", "content": content})
     # Формування повідомлень для відправки
     messages_to_send = [
-        {"role": "system", "content": "You always attempt the query."},
+        {"role": "system", 
+         "content": "You're a helpful, friendly assistant that always provides accurate and informative answers to any questions. Answer each question clearly and concisely, as if you're chatting with someone who wants straightforward information or assistance. If the question isn`t clear, ask for clarification. Remember to keep your tone polite, engaging, and approachable. If you don't understand the question, politely ask the user to clarify."
+        },
         *chat_history
     ]
+    
     chat_completion = client.chat.completions.create(
         messages=messages_to_send,
         model="llama3-70b-8192",
