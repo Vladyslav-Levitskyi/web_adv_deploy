@@ -159,8 +159,8 @@ div.features {
     color: white;
     text-align: center;
     display: block;
-    padding-left: 10em;
-    padding-right: 10em;
+    padding-left: 20em;
+    padding-right: 20em;
 }
 
 div.log_in_button {
@@ -467,4 +467,12 @@ footer {
         position: absolute;
         left: 0;
     }
+    div.features {
+        padding-top: 2em;
+        color: white;
+        text-align: center;
+        display: block;
+        padding-left: 10em;
+        padding-right: 10em;
+    }    
 }

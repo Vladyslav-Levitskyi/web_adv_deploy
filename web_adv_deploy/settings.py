@@ -26,10 +26,6 @@ logger.info(f"OPENWEATHER_KEY: {OPENWEATHER_KEY}")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG_LOCAL")
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",  # Локальний хост
-    "localhost",   # Локальний хост
-]
 
 if DEBUG == 'true':
     # Локальне середовище
