@@ -468,11 +468,7 @@ footer {
         left: 0;
     }
     div.features {
-        padding-top: 2em;
-        color: white;
-        text-align: center;
-        display: block;
-        padding-left: 10em;
-        padding-right: 10em;
+        padding-left: 5em;
+        padding-right: 5em;
     }    
 }
