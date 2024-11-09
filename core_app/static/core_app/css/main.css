@@ -159,6 +159,8 @@ div.features {
     color: white;
     text-align: center;
     display: block;
+    padding-left: 10em;
+    padding-right: 10em;
 }
 
 div.log_in_button {
