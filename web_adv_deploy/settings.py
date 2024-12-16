@@ -25,7 +25,7 @@ logger.info(f"OPENWEATHER_KEY: {OPENWEATHER_KEY}")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG_LOCAL")
-ALLOWED_HOSTS = ["web-adv-deploy.onrender.com"]
+#  ALLOWED_HOSTS = ["web-adv-deploy.onrender.com"]
 
 
 if DEBUG == 'true':
