@@ -34,6 +34,8 @@ def get_groq_response(content, chat_history):
             chat_completion = client.chat.completions.create(
                 messages=messages_to_send,
                 model="llama3-70b-8192",
+                temperature=0.7,
+                max_tokens=1024
             )
             response_content = chat_completion.choices[0].message.content
             
@@ -43,11 +45,11 @@ def get_groq_response(content, chat_history):
             
         except Exception as e:
             logger.error(f"Error during Groq API call: {str(e)}")
-            return "Вибачте, виникла помилка при обробці запиту"
+            return f"Помилка API: {str(e)}"
             
     except Exception as e:
         logger.error(f"Unexpected error in get_groq_response: {str(e)}")
-        return "Вибачте, виникла неочікувана помилка"
+        return f"Неочікувана помилка: {str(e)}"
 
 logger =  logging.getLogger(__name__)
 
