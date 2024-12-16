@@ -17,7 +17,7 @@ def get_groq_response(content, chat_history):
         api_key = os.getenv("GROQ_API_KEY")
         if not api_key:
             logger.error("GROQ_API_KEY not found in environment variables")
-            return "Помилка конфігурації: відсутній API ключ"
+            return "Configuration problem: API key is missing."
 
         # Створюємо власний HTTP клієнт без проксі
         http_client = httpx.Client(
@@ -56,11 +56,11 @@ def get_groq_response(content, chat_history):
             
         except Exception as e:
             logger.error(f"Error during Groq API call: {str(e)}")
-            return f"Помилка API: {str(e)}"
+            return f"Error API: {str(e)}"
             
     except Exception as e:
         logger.error(f"Unexpected error in get_groq_response: {str(e)}")
-        return f"Неочікувана помилка: {str(e)}"
+        return f"Unexpected error: {str(e)}"
     finally:
         if 'http_client' in locals():
             http_client.close()
