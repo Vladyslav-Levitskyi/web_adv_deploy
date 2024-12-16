@@ -18,8 +18,15 @@ def get_groq_response(content, chat_history):
             logger.error("GROQ_API_KEY not found in environment variables")
             return "Помилка конфігурації: відсутній API ключ"
 
+        os.environ["GROQ_API_KEY"] = api_key
+        
         client = Groq()
-        client.api_key = api_key
+        
+        try:
+            client.models.list()
+        except Exception as e:
+            logger.error(f"Failed to connect to Groq API: {str(e)}")
+            return "Помилка з'єднання з Groq API"
         
         # Adding users' messages to history
         chat_history.append({"role": "user", "content": content})
