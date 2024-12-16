@@ -28,19 +28,19 @@ DEBUG = os.getenv("DEBUG_LOCAL")
 ALLOWED_HOSTS = ["web-adv-deploy.onrender.com"]
 
 
-# ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS")
 
-# if DEBUG == 'true':
-#     # Локальне середовище
-#     ALLOWED_HOSTS = [
-#         "127.0.0.1",  # Локальний хост
-#         "localhost",   # Локаль��ий хост
-#     ]
-# elif DEBUG == 'false':
-#     # Серверне середовище
-#     ALLOWED_HOSTS = [
-#         "web-adv-deploy.onrender.com",  # Домен на сервері
-#     ]
+if DEBUG == 'true':
+    # Локальне середовище
+    ALLOWED_HOSTS = [
+        "127.0.0.1",  # Локальний хост
+        "localhost",   # Локальний хост
+    ]
+elif DEBUG == 'false':
+    # Серверне середовище
+    ALLOWED_HOSTS = [
+        "web-adv-deploy.onrender.com",  # Домен на сервері
+    ]
 
 logger.info(f"ALLOWED_HOSTS: {ALLOWED_HOSTS}")
 
@@ -92,24 +92,31 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'web_adv_deploy.wsgi.application'
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR / 'db.sqlite3'),
+    }
+}
+DATABASES["default"] = dj_database_url.parse(os.getenv("DATABASE_URL"))
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-if os.getenv("DJANGO_ENV") == "production":
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR / 'db.sqlite3'),
-        }
-    }
-else:
-    database_url = os.getenv("DATABASE_URL")
-    if database_url:
-        DATABASES = {
-            'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
-        }
-    else:
-        raise ValueError("DATABASE_URL environment variable is not set")
+# if os.getenv("DJANGO_ENV") == "production":
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': os.path.join(BASE_DIR / 'db.sqlite3'),
+#         }
+#     }
+# else:
+#     database_url = os.getenv("DATABASE_URL")
+#     if database_url:
+#         DATABASES = {
+#             'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+#         }
+#     else:
+#         raise ValueError("DATABASE_URL environment variable is not set")
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -161,7 +168,6 @@ STATICFILES_DIRS = [
 
 # Директорія, куди будуть зберігатися зібрані статичні файли
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 #STATICFILES_STORAGE = 'whitenoise.storage.ManifestStaticFilesStorage'
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
