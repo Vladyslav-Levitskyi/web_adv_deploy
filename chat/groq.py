@@ -5,7 +5,7 @@ from .models import ChatMessage
 from django.contrib.auth.models import User
 import logging
 
-groq = Groq()
+#groq = Groq()
 
 
 def get_groq_response(content, chat_history):
