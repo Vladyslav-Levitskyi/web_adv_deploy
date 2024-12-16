@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from dotenv import load_dotenv
 import logging
 
-#groq = Groq()
+groq = Groq()
 load_dotenv()
 
 def get_groq_response(content, chat_history):
