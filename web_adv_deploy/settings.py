@@ -34,7 +34,7 @@ ALLOWED_HOSTS = ["web-adv-deploy.onrender.com"]
 #     # Локальне середовище
 #     ALLOWED_HOSTS = [
 #         "127.0.0.1",  # Локальний хост
-#         "localhost",   # Локальний хост
+#         "localhost",   # Локаль��ий хост
 #     ]
 # elif DEBUG == 'false':
 #     # Серверне середовище
@@ -150,7 +150,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'core_app/static'),  # Вказуємо на директорію, де знаходяться статичні файли
+    os.path.join(BASE_DIR, 'core_app', 'static'),
 ]
 
 # STATICFILES_DIRS = [
@@ -161,9 +161,10 @@ STATICFILES_DIRS = [
 
 # Директорія, куди будуть зберігатися зібрані статичні файли
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 #STATICFILES_STORAGE = 'whitenoise.storage.ManifestStaticFilesStorage'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 #   MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
 
