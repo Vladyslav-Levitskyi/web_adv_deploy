@@ -8,7 +8,7 @@ import logging
 
 
 load_dotenv()
-groq = Groq(api_key=os.getenv("GROQ_API_KEY"), )
+groq = Groq()
 
 
 def get_groq_response(content, chat_history):
