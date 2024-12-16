@@ -28,8 +28,6 @@ DEBUG = os.getenv("DEBUG_LOCAL")
 ALLOWED_HOSTS = ["web-adv-deploy.onrender.com"]
 
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS")
-
 if DEBUG == 'true':
     # Локальне середовище
     ALLOWED_HOSTS = [
