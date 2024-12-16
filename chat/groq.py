@@ -6,8 +6,10 @@ from django.contrib.auth.models import User
 from dotenv import load_dotenv
 import logging
 
-groq = Groq()
+
 load_dotenv()
+groq = Groq(api_key=os.getenv("GROQ_API_KEY"), )
+
 
 def get_groq_response(content, chat_history):
     client = Groq(
