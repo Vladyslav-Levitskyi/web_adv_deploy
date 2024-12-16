@@ -90,14 +90,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'web_adv_deploy.wsgi.application'
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR / 'db.sqlite3'),
-    }
-}
-DATABASES["default"] = dj_database_url.parse(os.getenv("DATABASE_URL"))
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR / 'db.sqlite3'),
+#     }
+# }
 
+DATABASES = { 'default': dj_database_url.parse(os.getenv("DATABASE_URL", ""))}
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 # if os.getenv("DJANGO_ENV") == "production":
