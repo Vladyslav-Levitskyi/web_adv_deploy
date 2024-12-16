@@ -3,14 +3,15 @@ from typing import List
 from groq import Groq
 from .models import ChatMessage
 from django.contrib.auth.models import User
+from dotenv import load_dotenv
 import logging
 
 #groq = Groq()
-
+load_dotenv()
 
 def get_groq_response(content, chat_history):
     client = Groq(
-        api_key=os.environ.get("GROQ_API_KEY"),
+        api_key=os.getenv("GROQ_API_KEY"),
     )
     # Додайте повідомлення користувача до історії
     chat_history.append({"role": "user", "content": content})
