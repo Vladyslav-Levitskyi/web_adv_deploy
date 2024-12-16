@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from dotenv import load_dotenv
 import logging
 from django.core.exceptions import ObjectDoesNotExist
+import httpx
 
 
 load_dotenv()
@@ -18,15 +19,18 @@ def get_groq_response(content, chat_history):
             logger.error("GROQ_API_KEY not found in environment variables")
             return "Помилка конфігурації: відсутній API ключ"
 
-        os.environ["GROQ_API_KEY"] = api_key
+        # Створюємо власний HTTP клієнт без проксі
+        http_client = httpx.Client(
+            base_url="https://api.groq.com/v1",
+            headers={"Authorization": f"Bearer {api_key}"},
+            timeout=30.0
+        )
         
-        client = Groq()
-        
-        try:
-            client.models.list()
-        except Exception as e:
-            logger.error(f"Failed to connect to Groq API: {str(e)}")
-            return "Помилка з'єднання з Groq API"
+        # Ініціалізуємо Groq з нашим HTTP клієнтом
+        client = Groq(
+            api_key=api_key,
+            http_client=http_client
+        )
         
         # Adding users' messages to history
         chat_history.append({"role": "user", "content": content})
@@ -57,6 +61,9 @@ def get_groq_response(content, chat_history):
     except Exception as e:
         logger.error(f"Unexpected error in get_groq_response: {str(e)}")
         return f"Неочікувана помилка: {str(e)}"
+    finally:
+        if 'http_client' in locals():
+            http_client.close()
 
 logger =  logging.getLogger(__name__)
 
