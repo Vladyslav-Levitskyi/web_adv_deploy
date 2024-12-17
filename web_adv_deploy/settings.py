@@ -146,19 +146,13 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'core_app', 'static', 'favicon'),
 ]
 
-# STATICFILES_DIRS = [
-#     BASE_DIR / 'static/core_app/css',  
-#     BASE_DIR / 'static/core_app/img',            
-# ]
+# Змінюємо storage на більш простий
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
-
-# Директорія, куди будуть зберігатися зібрані статичні файли
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-#STATICFILES_STORAGE = 'whitenoise.storage.ManifestStaticFilesStorage'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-#   MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
-#   STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+# Додаємо налаштування для WhiteNoise
+WHITENOISE_USE_FINDERS = True
+WHITENOISE_MANIFEST_STRICT = False
+WHITENOISE_AUTOREFRESH = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
